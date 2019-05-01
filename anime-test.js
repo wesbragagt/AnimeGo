@@ -17,7 +17,7 @@ axios
         // const animeObj = response.data.data[0].attributes;
 
         console.log(
-            `Title: ${anime.title} \n Plot: ${anime.plot} \n \n link to img: ${
+            ` Title: ${anime.title} \n Plot: ${anime.plot} \n \n link to img: ${
                 anime.Img
             } `
         );
