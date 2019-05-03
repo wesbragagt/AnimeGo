@@ -16,36 +16,39 @@
         <link rel="stylesheet" href="main.css" />
     </head>
     <body>
-        <div class="container-fluid">
-            <div id="anime_grid" class="row">
+        <div class="container">
+            <div id="anime_grid" class="row d-flex justify-content-between flex-wrap jusitfy-content-between">
                 <a href="#" data-toggle="modal" data-target="#mymodal" value="">
-                    <div class="col offset-1 card" style="width: 18rem;">
+                    <div class="col card bg-dark p-4" style="width: 15rem; height: auto;">
                         <img
                             id="grid_one"
-                            class="anime-card card-img-top"
+                            class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap"
+                            alt="Card image cap" style="max-height: 75%;"
                         />
+                        <h5 id="title_one"></h2>
                     </div>
                 </a>
                 <a href="#" value="">
-                    <div class="col offset-1 card" style="width: 18rem;">
+                    <div class="col card bg-dark p-4" style="width: 15rem;" >
                         <img
                             id="grid_two"
-                            class="anime-card card-img-top"
+                            class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap"
+                            alt="Card image cap" style="max-height: 75%;"
                         />
+                        <h5 id="title_two"></h2>
                     </div>
                 </a>
                 <a href="#" value="">
-                    <div class="col offset-1 card" style="width: 18rem;">
+                    <div class="col card bg-dark p-4" style="width: 15rem;" >
                         <img
                             id="grid_three"
-                            class="anime-card card-img-top"
+                            class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap"
+                            alt="Card image cap" style="max-height: 75%;"
                         />
+                        <h5 id="title_three"></h2>
                     </div>
                 </a>
             </div>
@@ -102,41 +105,49 @@
         ></script>
 
         <script type="text/javascript">
-            let num = {
-                one: Math.floor(Math.random() * 500) + 1,
-                two: Math.floor(Math.random() * 300) + 1,
-                three: Math.floor(Math.random() * 300) + 1
-            };
-            console.log(num.one, num.two, num.three);
+            $('document').ready(function(){
 
-            const queryURL = "https://kitsu.io/api/edge/anime?filter[id]=";
-            function grabAnime(num, grid) {
-                $.ajax({
-                    url: queryURL + num,
-                    method: "GET"
-                }).then(function(response) {
-                    let anime;
-                    for (let i = 0; i < response.data.length; i++) {
-                        anime = response.data[i].attributes;
-                        // console.log(anime[i].posterImage.original);
+                // naruto api call
+                $.ajax("/api/naruto").then(function(response){
+                    console.log('naruto ',response.data[0]);
+
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
                     }
-                    console.log(anime.titles.en);
+                    $('#title_one').text(info.title);
+                   $('#grid_one').attr("src", info.poster)
+                    
+                    
+                })
 
-                    $("#grid_" + grid)
-                        .attr({ src: anime.posterImage.original })
-                        .val(response.data[0].id);
-                    // $("#grid_1_text").text(anime.synopsis);
-                });
-            }
-            // first anime
-            grabAnime(num.one, "one");
-            grabAnime(num.two, "two");
-            grabAnime(num.three, "three");
-
-            $(".anime-card").on("click", function() {
-                const animeClicked = $(this).val();
-                console.log(animeClicked);
-            });
+                // totoro api call
+                $.ajax("/api/totoro").then(function(response){
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
+                    }
+                    $('#title_two').text(info.title);
+                   $('#grid_two').attr("src", info.poster)
+                    
+                })
+                // bleach
+                $.ajax("/api/my%20hero%20academia").then(function(response){
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
+                    }
+                    $('#title_three').text(info.title);
+                   $('#grid_three').attr("src", info.poster)
+                    
+                })
+            })
         </script>
     </body>
 </html>
