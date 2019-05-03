@@ -5,10 +5,10 @@ module.exports = function(app) {
     app.get("/", function(req, res) {
         db.Anime.findAll({}).then(function(dbExamples) {
             res.render("index", {
-                msg: "Welcome!",
-                examples: dbExamples
+                msg: "AnimeGo!",
+                animes: dbExamples
             });
-        });
+        
     });
 
     // Load example page and pass in an example by id
