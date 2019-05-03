@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>animeGo</title>
+
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div id="anime_grid" class="row">
+                <a href="#" data-toggle="modal" data-target="#mymodal" value="">
+                    <div class="col offset-1 card" style="width: 18rem;">
+                        <img
+                            id="grid_one"
+                            class="anime-card card-img-top"
+                            src="..."
+                            alt="Card image cap"
+                        />
+                    </div>
+                </a>
+                <a href="#" value="">
+                    <div class="col offset-1 card" style="width: 18rem;">
+                        <img
+                            id="grid_two"
+                            class="anime-card card-img-top"
+                            src="..."
+                            alt="Card image cap"
+                        />
+                    </div>
+                </a>
+                <a href="#" value="">
+                    <div class="col offset-1 card" style="width: 18rem;">
+                        <img
+                            id="grid_three"
+                            class="anime-card card-img-top"
+                            src="..."
+                            alt="Card image cap"
+                        />
+                    </div>
+                </a>
+            </div>
+
+            <!-- modal popup -->
+            <div class="modal" id="mymodal">
+                <div class="modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title"></h2>
+                                Lorem ipsum dolor sit amet.
+                            </h2>
+                            <button
+                                class="close"
+                                type="button"
+                                data-dismiss="modal"
+                            >
+                                x
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Explicabo quae excepturi, cum
+                                quidem porro inventore. Ea a voluptatum maiores
+                                non.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"
+        ></script>
+
+        <script type="text/javascript">
+            let num = {
+                one: Math.floor(Math.random() * 500) + 1,
+                two: Math.floor(Math.random() * 300) + 1,
+                three: Math.floor(Math.random() * 300) + 1
+            };
+            console.log(num.one, num.two, num.three);
+
+            const queryURL = "https://kitsu.io/api/edge/anime?filter[id]=";
+            function grabAnime(num, grid) {
+                $.ajax({
+                    url: queryURL + num,
+                    method: "GET"
+                }).then(function(response) {
+                    let anime;
+                    for (let i = 0; i < response.data.length; i++) {
+                        anime = response.data[i].attributes;
+                        // console.log(anime[i].posterImage.original);
+                    }
+                    console.log(anime.titles.en);
+
+                    $("#grid_" + grid)
+                        .attr({ src: anime.posterImage.original })
+                        .val(response.data[0].id);
+                    // $("#grid_1_text").text(anime.synopsis);
+                });
+            }
+            // first anime
+            grabAnime(num.one, "one");
+            grabAnime(num.two, "two");
+            grabAnime(num.three, "three");
+
+            $(".anime-card").on("click", function() {
+                const animeClicked = $(this).val();
+                console.log(animeClicked);
+            });
+        </script>
+    </body>
+</html>

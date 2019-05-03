@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>animeGo</title>
+
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div id="anime_body" class="container-fluid">
+            <div class="form-row text-center">
+                <header id="logo">
+                    <img
+                        src="https://files.slack.com/files-pri/TF4BYLNBT-FJBGJ18P6/screen_shot_2019-05-01_at_5.05.27_pm.png"
+                        alt=""
+                    />
+                </header>
+                <div class="col-12">
+                    <a href="dashboard.html"
+                        ><button id="login" class="btn btn-danger">
+                            Go
+                        </button></a
+                    >
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"
+        ></script>
+
+        <script type="text/javascript">
+            //         window.onload = function() {
+            //     if (window.jQuery) {
+            //         // jQuery is loaded
+            //         alert("Yeah!");
+            //     } else {
+            //         // jQuery is not loaded
+            //         alert("Doesn't Work");
+            //     }
+            // }
+            const queryURL =
+                "https://kitsu.io/api/edge/anime?filter[genres]=action&page[limit]=15";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+                let anime = [];
+                for (let i = 0; i < response.data.length; i++) {
+                    anime.push(response.data[i].attributes);
+                    console.log(anime[i].posterImage.original);
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+html {
+    /* font-size: 62.5%; */
+}
+body {
+    background-image: url("https://files.slack.com/files-pri/TF4BYLNBT-FJ0L2ECQ2/anime.jpg");
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    background-position: top;
+    height: 100vh;
+}
+
+#anime_body {
+    position: relative;
+}
+
+#logo {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login {
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#anime_grid {
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
