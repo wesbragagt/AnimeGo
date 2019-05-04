@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>animeGo</title>
+
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="anime_grid" class="row d-flex justify-content-between flex-wrap jusitfy-content-between">
+                <a href="#" data-toggle="modal" data-target="#mymodal" value="">
+                    <div class="col card bg-dark p-4" style="width: 15rem; height: auto;">
+                        <img
+                            id="grid_one"
+                            class="anime-card card-img-top img-fluid"
+                            src="..."
+                            alt="Card image cap" style="max-height: 75%;"
+                        />
+                        <h5 id="title_one"></h2>
+                    </div>
+                </a>
+                <a href="#" value="">
+                    <div class="col card bg-dark p-4" style="width: 15rem;" >
+                        <img
+                            id="grid_two"
+                            class="anime-card card-img-top img-fluid"
+                            src="..."
+                            alt="Card image cap" style="max-height: 75%;"
+                        />
+                        <h5 id="title_two"></h2>
+                    </div>
+                </a>
+                <a href="#" value="">
+                    <div class="col card bg-dark p-4" style="width: 15rem;" >
+                        <img
+                            id="grid_three"
+                            class="anime-card card-img-top img-fluid"
+                            src="..."
+                            alt="Card image cap" style="max-height: 75%;"
+                        />
+                        <h5 id="title_three"></h2>
+                    </div>
+                </a>
+            </div>
+
+            <!-- modal popup -->
+            <div class="modal" id="mymodal">
+                <div class="modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title"></h2>
+                                Lorem ipsum dolor sit amet.
+                            </h2>
+                            <button
+                                class="close"
+                                type="button"
+                                data-dismiss="modal"
+                            >
+                                x
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Explicabo quae excepturi, cum
+                                quidem porro inventore. Ea a voluptatum maiores
+                                non.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"
+        ></script>
+
+        <script type="text/javascript">
+            $('document').ready(function(){
+
+                // naruto api call
+                $.ajax("/api/naruto").then(function(response){
+                    console.log('naruto ',response.data[0]);
+
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
+                    }
+                    $('#title_one').text(info.title);
+                   $('#grid_one').attr("src", info.poster)
+                    
+                    
+                })
+
+                // totoro api call
+                $.ajax("/api/totoro").then(function(response){
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
+                    }
+                    $('#title_two').text(info.title);
+                   $('#grid_two').attr("src", info.poster)
+                    
+                })
+                // bleach
+                $.ajax("/api/my%20hero%20academia").then(function(response){
+                    const info = {
+                        title: response.data[0].attributes.titles.en,
+                        genre: response.data[0].attributes.genre,
+                        poster:response.data[0].attributes.posterImage.original,
+                        synopsis:response.data[0].attributes.synopsis
+                    }
+                    $('#title_three').text(info.title);
+                   $('#grid_three').attr("src", info.poster)
+                    
+                })
+            })
+        </script>
+    </body>
+</html>
