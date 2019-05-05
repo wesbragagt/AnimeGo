@@ -1,10 +1,11 @@
 var db = require("../models");
 var axios = require("axios");
 var path = require("path");
+
 module.exports = function(app) {
     // Load index page
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../dashboard.html"));
+        res.sendFile(path.join(__dirname, "../public/dashboard.html"));
         // db.Anime.findAll({}).then(function(dbExamples) {
         //     res.render("index", {
         //         msg: "AnimeGo!",
