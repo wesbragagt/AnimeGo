@@ -13,74 +13,54 @@
             crossorigin="anonymous"
         />
 
-        <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
     </head>
     <body>
         <div class="container">
-            <div id="anime_grid" class="row d-flex justify-content-between flex-wrap jusitfy-content-between">
+            <div
+                id="anime_grid"
+                class="row d-flex justify-content-between flex-wrap jusitfy-content-between"
+            >
                 <a href="#" data-toggle="modal" data-target="#mymodal" value="">
-                    <div class="col card bg-dark p-4" style="width: 15rem; height: auto;">
+                    <div
+                        class="col card bg-dark p-4"
+                        style="width: 15rem; height: auto;"
+                    >
                         <img
                             id="grid_one"
                             class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap" style="max-height: 75%;"
+                            alt="Card image cap"
+                            style="max-height: 75%;"
                         />
-                        <h5 id="title_one"></h2>
+                        <h5 id="title_one"></h5>
                     </div>
                 </a>
                 <a href="#" value="">
-                    <div class="col card bg-dark p-4" style="width: 15rem;" >
+                    <div class="col card bg-dark p-4" style="width: 15rem;">
                         <img
                             id="grid_two"
                             class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap" style="max-height: 75%;"
+                            alt="Card image cap"
+                            style="max-height: 75%;"
                         />
-                        <h5 id="title_two"></h2>
+                        <h5 id="title_two"></h5>
                     </div>
                 </a>
                 <a href="#" value="">
-                    <div class="col card bg-dark p-4" style="width: 15rem;" >
+                    <div class="col card bg-dark p-4" style="width: 15rem;">
                         <img
                             id="grid_three"
                             class="anime-card card-img-top img-fluid"
                             src="..."
-                            alt="Card image cap" style="max-height: 75%;"
+                            alt="Card image cap"
+                            style="max-height: 75%;"
                         />
-                        <h5 id="title_three"></h2>
+                        <h5 id="title_three"></h5>
                     </div>
                 </a>
             </div>
-
-            <!-- modal popup -->
-            <div class="modal" id="mymodal">
-                <div class="modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title"></h2>
-                                Lorem ipsum dolor sit amet.
-                            </h2>
-                            <button
-                                class="close"
-                                type="button"
-                                data-dismiss="modal"
-                            >
-                                x
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Explicabo quae excepturi, cum
-                                quidem porro inventore. Ea a voluptatum maiores
-                                non.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal -->
         </div>
 
         <script
@@ -104,50 +84,6 @@
             crossorigin="anonymous"
         ></script>
 
-        <script type="text/javascript">
-        
-
-// naruto api call
-$.ajax("/api/naruto").then(function(response){
-    console.log('naruto ',response.data[0]);
-
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster:response.data[0].attributes.posterImage.original,
-        synopsis:response.data[0].attributes.synopsis
-    }
-    $('#title_one').text(info.title);
-   $('#grid_one').attr("src", info.poster)
-    
-    
-});
-
-// totoro api call
-$.ajax("/api/totoro").then(function(response){
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster:response.data[0].attributes.posterImage.original,
-        synopsis:response.data[0].attributes.synopsis
-    }
-    $('#title_two').text(info.title);
-   $('#grid_two').attr("src", info.poster)
-    
-});
-// bleach
-$.ajax("/api/my%20hero%20academia").then(function(response){
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster:response.data[0].attributes.posterImage.original,
-        synopsis:response.data[0].attributes.synopsis
-    }
-    $('#title_three').text(info.title);
-   $('#grid_three').attr("src", info.poster)
-    
-});
-
-        </script>
+        <script src="../js/anime-DOM.js"></script>
     </body>
 </html>
