@@ -1,36 +1,47 @@
-// naruto api call
-$.ajax("/api/naruto").then(function(response) {
-    console.log("naruto ", response.data[0]);
+// build a function that takes an argument of the name of the anime and passes to the ajax call
 
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster: response.data[0].attributes.posterImage.original,
-        synopsis: response.data[0].attributes.synopsis
-    };
-    $("#title_one").text(info.title);
-    $("#grid_one").attr("src", info.poster);
-});
+function getAnime(...arr) {
+    for (let i = 0; i < arr.length; i++) {
+        // ajax call is made for each anime passed as an argument and it sends the anime data to each img tag
+        $.ajax("/api/" + arr[i]).then(function(response) {
+            const info = {
+                title: response.data[0].attributes.titles.en,
+                rating: response.data[0].attributes.averageRating,
+                poster: response.data[0].attributes.posterImage.original,
+                synopsis: response.data[0].attributes.synopsis,
+                apiLink: response.data[0].links
+            };
 
-// totoro api call
-$.ajax("/api/totoro").then(function(response) {
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster: response.data[0].attributes.posterImage.original,
-        synopsis: response.data[0].attributes.synopsis
-    };
-    $("#title_two").text(info.title);
-    $("#grid_two").attr("src", info.poster);
-});
-// bleach
-$.ajax("/api/my%20hero%20academia").then(function(response) {
-    const info = {
-        title: response.data[0].attributes.titles.en,
-        genre: response.data[0].attributes.genre,
-        poster: response.data[0].attributes.posterImage.original,
-        synopsis: response.data[0].attributes.synopsis
-    };
-    $("#title_three").text(info.title);
-    $("#grid_three").attr("src", info.poster);
-});
+            // create clickable elements that will hold the animes
+            const newPoster = $(
+                "<a href='#' data-toggle='modal' data-target='#mymodal'></a>"
+            );
+            newPoster.attr("id", "poster" + i);
+            newPoster.attr("data-info", info);
+            newPoster.addClass(
+                "col-4 card bg-danger p-2 offset-1 mb-1 badge-info"
+            );
+            // create anime title
+            const title = $("<h5></h5>");
+            title.text(info.title);
+            // create image
+            const img = $("<img/>");
+            img.attr({
+                id: "grid_" + i,
+                style: "max-height:75%;",
+                src: info.poster
+            });
+
+            // store the info object into a data attribute to be accessed later
+            img.addClass("img-fluid");
+
+            // appending elements
+            newPoster.append(img);
+            newPoster.append(title);
+
+            $("#anime_grid").append(newPoster);
+        });
+    }
+}
+
+getAnime("naruto", "bleach", "totoro", "one%20piece");
