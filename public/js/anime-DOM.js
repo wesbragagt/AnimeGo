@@ -44,4 +44,11 @@ function getAnime(...arr) {
     }
 }
 
-getAnime("naruto", "bleach", "totoro", "one%20piece");
+getAnime(
+    "naruto",
+    "bleach",
+    "totoro",
+    "one piece",
+    "death note",
+    "attack on titan"
+);
