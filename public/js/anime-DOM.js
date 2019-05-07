@@ -56,17 +56,27 @@ getAnime(
 $("document").ready(function() {
     $("#anime_grid").on("click", "a", function() {
         const info = $(this).data("info");
+        // remove the last piece of the array
 
         // logs of info
-        console.log("Object: ", info);
+        // console.log("Object: ", info);
 
-        console.log("Title: ", info.title);
-        console.log("Rating: ", info.rating);
-        console.log("Synopsis: ", info.synopsis);
-        console.log("Poster: ", info.poster);
+        // console.log("Title: ", info.title);
+        // console.log("Rating: ", info.rating);
+        // console.log("Synopsis: ", info.synopsis);
+        // console.log("Poster: ", info.poster);
 
-        // modal interaction
+        // MODAL
+
+        // title
         $(".modal-title").text(info.title);
-        $(".modal-body").text(info.synopsis);
+
+        // modal body text
+        $(".modal-body").text(
+            info.synopsis
+                .split(".")
+                .slice(0, -1)
+                .join(". ") + "."
+        );
     });
 });
