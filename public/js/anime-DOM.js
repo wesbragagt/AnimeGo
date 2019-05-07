@@ -59,20 +59,22 @@ $("document").ready(function() {
         // remove the last piece of the array
 
         // logs of info
-        // console.log("Object: ", info);
+        console.log("Object: ", info);
 
-        // console.log("Title: ", info.title);
-        // console.log("Rating: ", info.rating);
+        console.log("Title: ", info.title);
+        console.log("Rating: ", info.rating);
         // console.log("Synopsis: ", info.synopsis);
-        // console.log("Poster: ", info.poster);
+        console.log("Poster: ", info.poster);
 
         // MODAL
 
         // title
         $(".modal-title").text(info.title);
 
-        // modal body text
-        $(".modal-body").text(
+        // image
+        $(".modal-image").attr("src", info.poster);
+        // modal body text, removing the last part of the paragraph which says credits to who wrote it.
+        $(".modal-synopsis").text(
             info.synopsis
                 .split(".")
                 .slice(0, -1)
