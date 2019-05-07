@@ -1,82 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>animeGo</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>animeGo</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+    </head>
 
-    <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
-</head>
-
-<body>
-    <nav class="navbar navbar-light" style="background-color: #5E6572;">
+    <body>
+        <nav class="navbar navbar-light" style="background-color: #5E6572;">
             <a class="navbar-brand" id="brand">AnimeGo!</a>
             <a class="topics"></a>
             <button class="btn btn-sm" id="favesDisplay">Contact</button>
             <button class="btn btn-sm" id="favesDisplay">Favorites</button>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" placeholder="Search.." type="text" /> 
+                <input
+                    class="form-control mr-sm-2"
+                    placeholder="Search.."
+                    type="text"
+                />
                 <button class="btn my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
-        
+
         <header class="hero">
-        <div id="banner" class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="jumbotron">
-                        <h1 class="small">Welcome To <span class="bold">AnimeGo!</span></h1>
-                        <p class="big">Find what you want to watch.</p>
+            <div id="banner" class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="jumbotron">
+                            <h1 class="small">
+                                Welcome To <span class="bold">AnimeGo!</span>
+                            </h1>
+                            <p class="big">Find what you want to watch.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </header>
+
+        <div class="container">
+            <div
+                id="anime_grid"
+                class="row d-flex justify-content-between flex-wrap"
+            ></div>
         </div>
-    </header>
 
-    <div class="container">
-        <div id="anime_grid" class="row d-flex justify-content-between flex-wrap jusitfy-content-between">
-            <a href="#" data-toggle="modal" data-target="#mymodal" value="">
-                <div class="col card bg-dark p-4" style="width: 15rem; height: auto;">
-                    <img id="grid_one" class="anime-card card-img-top img-fluid" src="..." alt="Card image cap"
-                        style="max-height: 75%;" />
-                    <h5 id="title_one"></h5>
-                </div>
-            </a>
-            <a href="#" value="">
-                <div class="col card bg-dark p-4" style="width: 15rem;">
-                    <img id="grid_two" class="anime-card card-img-top img-fluid" src="..." alt="Card image cap"
-                        style="max-height: 75%;" />
-                    <h5 id="title_two"></h5>
-                </div>
-            </a>
-            <a href="#" value="">
-                <div class="col card bg-dark p-4" style="width: 15rem;">
-                    <img id="grid_three" class="anime-card card-img-top img-fluid" src="..." alt="Card image cap"
-                        style="max-height: 75%;" />
-                    <h5 id="title_three"></h5>
-                </div>
-            </a>
-        </div>
-    </div>
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"
+        ></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
-    <script src="../js/anime-DOM.js"></script>
-</body>
-
+        <script src="../js/anime-DOM.js"></script>
+    </body>
 </html>
