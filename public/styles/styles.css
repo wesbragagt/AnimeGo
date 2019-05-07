@@ -21,3 +21,18 @@ h1,
 p {
     color: #ffe0be;
 }
+
+/* Landing Page */
+.navbar {
+  background:transparent;
+}
+
+#landing {
+    background:linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)), url("https://media.giphy.com/media/NKicvKt6iisXS/giphy.gif") no-repeat content-box center fixed;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .jumbotron {
+  margin-top: 1in;
+  }
