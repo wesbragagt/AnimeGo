@@ -9,6 +9,7 @@ function getAnime(...arr) {
                 rating: response.data[0].attributes.averageRating,
                 poster: response.data[0].attributes.posterImage.original,
                 synopsis: response.data[0].attributes.synopsis,
+                preview: response.data[0].attributes.youtubeVideoId,
                 apiLink: response.data[0].links
             };
 
@@ -56,17 +57,35 @@ getAnime(
 $("document").ready(function() {
     $("#anime_grid").on("click", "a", function() {
         const info = $(this).data("info");
+        // remove the last piece of the array
 
         // logs of info
         console.log("Object: ", info);
 
         console.log("Title: ", info.title);
         console.log("Rating: ", info.rating);
-        console.log("Synopsis: ", info.synopsis);
+        // console.log("Synopsis: ", info.synopsis);
         console.log("Poster: ", info.poster);
 
-        // modal interaction
+        // MODAL
+
+        // title
         $(".modal-title").text(info.title);
-        $(".modal-body").text(info.synopsis);
+
+        // image
+        $(".modal-image").attr("src", info.poster);
+        // modal body text, removing the last part of the paragraph which says credits to who wrote it.
+        $(".modal-synopsis").text(
+            info.synopsis
+                .split(".")
+                .slice(0, -1)
+                .join(". ") + "."
+        );
+
+        // modal video
+        $(".modal-preview").attr(
+            "src",
+            "https://www.youtube.com/embed/" + info.preview
+        );
     });
 });
