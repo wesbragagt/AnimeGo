@@ -64,5 +64,9 @@ $("document").ready(function() {
         console.log("Rating: ", info.rating);
         console.log("Synopsis: ", info.synopsis);
         console.log("Poster: ", info.poster);
+
+        // modal interaction
+        $(".modal-title").text(info.title);
+        $(".modal-body").text(info.synopsis);
     });
 });
