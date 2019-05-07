@@ -1,28 +1,23 @@
 body {
-  background: url("../assets/hip-square/hip-square.png");
+    background: url("../assets/hip-square/hip-square.png");
 }
-
 
 .jumbotron {
-background-color: transparent;
-padding-top: 90px;
-}
-
-body {
-background: url("../assets/hip-square/hip-square.png");
+    background-color: transparent;
+    padding-top: 90px;
 }
 
 .hero {
-background-image: url("../assets/banner.jpg");
-background-size: cover;
-background-position: center;
-width: 100wh;
-height: 60vh;
-display: flex;
+    background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+        url("../assets/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100wh;
+    height: 60vh;
+    display: flex;
 }
 
-h1, p {
-color:  	#FFE0BE;
+h1,
+p {
+    color: #ffe0be;
 }
-
-
