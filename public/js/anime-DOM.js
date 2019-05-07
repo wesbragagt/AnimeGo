@@ -9,6 +9,7 @@ function getAnime(...arr) {
                 rating: response.data[0].attributes.averageRating,
                 poster: response.data[0].attributes.posterImage.original,
                 synopsis: response.data[0].attributes.synopsis,
+                preview: response.data[0].attributes.youtubeVideoId,
                 apiLink: response.data[0].links
             };
 
@@ -79,6 +80,12 @@ $("document").ready(function() {
                 .split(".")
                 .slice(0, -1)
                 .join(". ") + "."
+        );
+
+        // modal video
+        $(".modal-preview").attr(
+            "src",
+            "https://www.youtube.com/embed/" + info.preview
         );
     });
 });
