@@ -17,7 +17,7 @@ function getAnime(...arr) {
                 "<a href='#' data-toggle='modal' data-target='#mymodal'></a>"
             );
             newPoster.attr("id", "poster" + i);
-            newPoster.attr("data-info", info);
+            newPoster.attr("data-info", JSON.stringify(info));
             newPoster.addClass(
                 "col-4 card bg-danger p-2 offset-1 mb-1 badge-info"
             );
@@ -52,3 +52,17 @@ getAnime(
     "death note",
     "attack on titan"
 );
+
+$("document").ready(function() {
+    $("#anime_grid").on("click", "a", function() {
+        const info = $(this).data("info");
+
+        // logs of info
+        console.log("Object: ", info);
+
+        console.log("Title: ", info.title);
+        console.log("Rating: ", info.rating);
+        console.log("Synopsis: ", info.synopsis);
+        console.log("Poster: ", info.poster);
+    });
+});
