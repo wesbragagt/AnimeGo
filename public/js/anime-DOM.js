@@ -69,14 +69,20 @@ function getAnime(...arr) {
     }
 }
 
-getAnime(
-    "naruto",
-    "bleach",
-    "totoro",
-    "one piece",
-    "death note",
-    "attack on titan"
-);
+// get users saved animes
+$.ajax("/user").then(function(response) {
+    const animes = response.map(anime => anime.name);
+    getAnime(...animes);
+});
+
+// getAnime(
+//     "naruto",
+//     "bleach",
+//     "totoro",
+//     "one piece",
+//     "death note",
+//     "attack on titan"
+// );
 
 $("document").ready(function() {
     $("#anime_grid").on("click", "a", function() {

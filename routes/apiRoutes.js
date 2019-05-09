@@ -15,6 +15,12 @@ module.exports = function(app) {
             .catch("error please provide an anime");
     });
 
+    app.get("/user", function(req, res) {
+        db.Anime.findAll({}).then(function(result) {
+            res.json(result);
+        });
+    });
+
     // Create a new example
     // app.post("/api/examples", function(req, res) {
     //     db.Example.create(req.body).then(function(dbExample) {
