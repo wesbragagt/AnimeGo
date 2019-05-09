@@ -35,29 +35,24 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 
-db.sequelize
-    .sync(syncOptions)
-    .then(function() {
+db.sequelize.sync(syncOptions).then(function() {
+    db.Anime.create({
+        name: "naruto",
+        api_number: 11
+    }).then(function() {
         db.Anime.create({
-            name: "sailor moon"
-        });
-    })
-    .then(function() {
-        db.Anime.create({
-            name: "naruto"
-        }).then(function() {
-            db.Anime.create({
-                name: "Full Metal Alchemist"
-            });
-        });
-        app.listen(PORT, function() {
-            console.log(
-                "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-                PORT,
-                PORT
-            );
+            name: "sailor moon",
+            api_number: 489
         });
     });
+    app.listen(PORT, function() {
+        console.log(
+            "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+            PORT,
+            PORT
+        );
+    });
+});
 
 // app.listen(PORT, function() {
 //     console.log(`Listening on port ${PORT}`);

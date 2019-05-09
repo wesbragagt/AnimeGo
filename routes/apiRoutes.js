@@ -15,9 +15,16 @@ module.exports = function(app) {
             .catch("error please provide an anime");
     });
 
+    // get all the anime that has been added
     app.get("/user", function(req, res) {
         db.Anime.findAll({}).then(function(result) {
             res.json(result);
+        });
+    });
+
+    app.post("/user/new", function(req, res) {
+        db.Anime.create(req.body).then(function(dbAnime) {
+            res.json(dbAnime);
         });
     });
 

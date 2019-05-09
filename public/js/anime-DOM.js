@@ -75,16 +75,10 @@ $.ajax("/user").then(function(response) {
     getAnime(...animes);
 });
 
-// getAnime(
-//     "naruto",
-//     "bleach",
-//     "totoro",
-//     "one piece",
-//     "death note",
-//     "attack on titan"
-// );
+getAnime("bleach", "totoro", "one piece", "death note", "attack on titan");
 
 $("document").ready(function() {
+    // modal clicks
     $("#anime_grid").on("click", "a", function() {
         const info = $(this).data("info");
         // remove the last piece of the array
@@ -117,5 +111,23 @@ $("document").ready(function() {
             "src",
             "https://www.youtube.com/embed/" + info.preview
         );
+
+        // assign data to the button
+        $("#add-btn").data("anime", info);
+    });
+
+    // add button click
+    $("#add-btn").on("click", function(event) {
+        event.preventDefault();
+        const info = $(this).data("anime");
+        const anime = {
+            name: info.title,
+            api_number: parseInt(info.id)
+        };
+
+        $.post("/user/new", anime).then(function(data) {
+            console.log(data);
+        });
+        alert("Anime added to your watch list");
     });
 });
