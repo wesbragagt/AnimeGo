@@ -7,7 +7,7 @@ function getAnime(...arr) {
             const info = {
                 id: response.data[0].id,
                 title: response.data[0].attributes.titles.en,
-                ageRating: response.data[0].attributes.ageRatingGuide,
+                ageRating: response.data[0].attributes.ageRating,
                 poster: response.data[0].attributes.posterImage.original,
                 synopsis: response.data[0].attributes.synopsis,
                 status: response.data[0].attributes.status,
@@ -23,11 +23,33 @@ function getAnime(...arr) {
             newPoster.attr("id", "poster" + i);
             newPoster.attr("data-info", JSON.stringify(info));
             newPoster.addClass(
-                "col-4 card bg-danger p-2 offset-1 mb-1 badge-info"
+                "col-4 card bg-danger p-1 offset-1 mb-1 badge-info"
             );
+
+            const newPosterBody = $("<div class='card-body'></div>");
             // create anime title
-            const title = $("<h5></h5>");
+            const title = $("<h5 class='card-title'></h5>");
             title.text(info.title);
+
+            // const text = $("<p class='card-text'></p>");
+            // text.text(info.synopsis.substring(0, 150));
+
+            const ul = $("<ul></ul>");
+            // age rating
+            const rated = $("<li ></li>");
+            rated.text("Rated: " + info.ageRating);
+
+            // how long are the episodes
+            const episodes = $("<li ></li>");
+            episodes.text(info.length + "min");
+
+            const status = $("<li ></li>");
+            status.text(info.status);
+
+            ul.append(rated, episodes, status);
+
+            // append title and text to card body
+            newPosterBody.append(title, ul);
             // create image
             const img = $("<img/>");
             img.attr({
@@ -40,8 +62,7 @@ function getAnime(...arr) {
             img.addClass("img-fluid card-img-top");
 
             // appending elements
-            newPoster.append(img);
-            newPoster.append(title);
+            newPoster.append(img, newPosterBody);
 
             $("#anime_grid").append(newPoster);
         });
