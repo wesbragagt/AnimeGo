@@ -5,10 +5,13 @@ function getAnime(...arr) {
         // ajax call is made for each anime passed as an argument and it sends the anime data to each img tag
         $.ajax("/api/" + arr[i]).then(function(response) {
             const info = {
+                id: response.data[0].id,
                 title: response.data[0].attributes.titles.en,
-                rating: response.data[0].attributes.averageRating,
+                ageRating: response.data[0].attributes.ageRatingGuide,
                 poster: response.data[0].attributes.posterImage.original,
                 synopsis: response.data[0].attributes.synopsis,
+                status: response.data[0].attributes.status,
+                length: response.data[0].attributes.episodeLength,
                 preview: response.data[0].attributes.youtubeVideoId,
                 apiLink: response.data[0].links
             };
@@ -34,7 +37,7 @@ function getAnime(...arr) {
             });
 
             // store the info object into a data attribute to be accessed later
-            img.addClass("img-fluid");
+            img.addClass("img-fluid card-img-top");
 
             // appending elements
             newPoster.append(img);
