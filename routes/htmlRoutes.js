@@ -1,5 +1,3 @@
-var db = require("../models");
-var axios = require("axios");
 var path = require("path");
 
 module.exports = function(app) {
