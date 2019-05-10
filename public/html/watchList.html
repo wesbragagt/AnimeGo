@@ -6,21 +6,30 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>animeGo</title>
 
+        <!-- Font Awesome -->
         <link
             rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        />
+        <!-- Bootstrap core CSS -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- Material Design Bootstrap -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css"
+            rel="stylesheet"
         />
 
         <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
     </head>
 
     <body>
-        <nav class="navbar navbar-light" style="background-color: #5E6572;">
+        <nav class="navbar navbar-light bg-danger text-light">
             <a class="navbar-brand" id="brand">AnimeGo!</a>
-            <a class="topics"></a>
-            <a href="/recommended" class="btn btn-sm" id="favesDisplay">
+
+            <a href="/recommended" class="btn btn-sm ml-auto" id="favesDisplay">
                 Recommended
             </a>
             <a href="/watchList" class="btn btn-sm" id="favesDisplay">
@@ -49,7 +58,7 @@
         <div class="container">
             <div
                 id="anime_grid"
-                class="row d-flex justify-content-between flex-wrap"
+                class="row d-flex justify-content-start flex-wrap"
             ></div>
         </div>
 
@@ -122,12 +131,12 @@
                             Close
                         </button>
                         <button
-                            id="add-btn"
+                            id="delete-btn"
                             type="button"
                             class="btn btn-primary"
                             data-anime=""
                         >
-                            Add to List
+                            Delete
                         </button>
                     </div>
                 </div>

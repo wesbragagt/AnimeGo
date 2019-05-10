@@ -1,11 +1,9 @@
-var db = require("../models");
-var axios = require("axios");
 var path = require("path");
 
 module.exports = function(app) {
     // Load index page
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
+        res.sendFile(path.join(__dirname, "../public/html/recommended.html"));
     });
     app.get("/watchList", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
