@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         api_number: {
-            type: DataTypes.INTEGER
+            type: DataTypes.UUID,
+            allowNull: false
         }
     });
     return Anime;

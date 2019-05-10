@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "Batman60101062",
+        "password": "password",
         "database": "animeGo_db",
         "host": "localhost",
         "dialect": "mysql"
