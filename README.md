@@ -1,7 +1,7 @@
 # AnimeGo!
 
 ## Live Preview
- - [AnimeGo!](https://id.heroku.com/login)
+ - [AnimeGo!](https://animegoapp.herokuapp.com/)
 
 
 ## Author(s)
