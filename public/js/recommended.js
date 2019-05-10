@@ -1,5 +1,4 @@
-// build a function that takes an argument of the name of the anime and passes to the ajax call
-
+// DECLARTIONS
 function getAnime(...arr) {
     for (let i = 0; i < arr.length; i++) {
         // ajax call is made for each anime passed as an argument and it sends the anime data to each img tag
@@ -22,9 +21,7 @@ function getAnime(...arr) {
             );
             newPoster.attr("id", "poster" + i);
             newPoster.attr("data-info", JSON.stringify(info));
-            newPoster.addClass(
-                "col-4 card bg-danger p-1 offset-1 mb-1 badge-info"
-            );
+            newPoster.addClass("col-2 card bg-danger p-1 mb-1 badge-danger");
 
             const newPosterBody = $("<div class='card-body'></div>");
             // create anime title
@@ -54,7 +51,7 @@ function getAnime(...arr) {
             const img = $("<img/>");
             img.attr({
                 id: "grid_" + i,
-                style: "max-height:75%;",
+                style: "max-height:50%;",
                 src: info.poster
             });
 
@@ -69,10 +66,7 @@ function getAnime(...arr) {
     }
 }
 
-getAnime("Berserk", "Hunter vs Hunter", "One Punch Man");
-
-$("document").ready(function() {
-    // modal clicks
+function modalClick() {
     $("#anime_grid").on("click", "a", function() {
         const info = $(this).data("info");
         // remove the last piece of the array
@@ -109,8 +103,9 @@ $("document").ready(function() {
         // assign data to the button
         $("#add-btn").data("anime", info);
     });
+}
 
-    // add button click
+function addAnime() {
     $("#add-btn").on("click", function(event) {
         event.preventDefault();
         const info = $(this).data("anime");
@@ -119,9 +114,41 @@ $("document").ready(function() {
             api_number: parseInt(info.id)
         };
 
-        $.post("/user/new", anime).then(function(data) {
-            console.log(data);
+        // get a list of all the ids currently inside our list
+        $.get("/user/watchList").then(function(response) {
+            const currentList = response.map(anime => anime.api_number);
+
+            // It only adds that anime if it doesn't already exists
+            if (currentList.indexOf(anime.api_number) === -1) {
+                $.post("/user/watchList", anime).then(function(data) {
+                    console.log("data posted: ", data);
+                    alert("anime added to list ");
+                    window.location.href = "/watchList";
+                    return;
+                });
+            } else {
+                alert("you've already added this anime to the list");
+                return;
+            }
         });
-        alert("Anime added to your watch list");
     });
+}
+
+// calling out animes for recommendations
+getAnime(
+    "Dragon Ball Super",
+    "Hunter vs Hunter",
+    "Fairy Tail",
+    "Attack on Titan",
+    "Fullmetal Alchemist",
+    "High School of Dead",
+    "My Hero Academia",
+    "Gantz"
+);
+
+$("document").ready(function() {
+    // modal clicks
+    modalClick();
+    // add button click
+    addAnime();
 });

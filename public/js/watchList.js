@@ -1,5 +1,4 @@
-// build a function that takes an argument of the name of the anime and passes to the ajax call
-
+// DECLARATIONS
 function getAnime(...arr) {
     for (let i = 0; i < arr.length; i++) {
         // ajax call is made for each anime passed as an argument and it sends the anime data to each img tag
@@ -22,9 +21,7 @@ function getAnime(...arr) {
             );
             newPoster.attr("id", "poster" + i);
             newPoster.attr("data-info", JSON.stringify(info));
-            newPoster.addClass(
-                "col-4 card bg-danger p-1 offset-1 mb-1 badge-info"
-            );
+            newPoster.addClass("col-2 card bg-danger p-1 mb-1 badge-danger");
 
             const newPosterBody = $("<div class='card-body'></div>");
             // create anime title
@@ -69,27 +66,9 @@ function getAnime(...arr) {
     }
 }
 
-// get users saved animes
-$.ajax("/user").then(function(response) {
-    const animes = response.map(anime => anime.name);
-    getAnime(...animes);
-});
-
-getAnime("bleach", "totoro", "one piece", "death note", "attack on titan");
-
-$("document").ready(function() {
-    // modal clicks
+function modalClick() {
     $("#anime_grid").on("click", "a", function() {
         const info = $(this).data("info");
-        // remove the last piece of the array
-
-        // logs of info
-        console.log("Object: ", info);
-
-        console.log("Title: ", info.title);
-        console.log("Rating: ", info.rating);
-        // console.log("Synopsis: ", info.synopsis);
-        console.log("Poster: ", info.poster);
 
         // MODAL
 
@@ -113,11 +92,12 @@ $("document").ready(function() {
         );
 
         // assign data to the button
-        $("#add-btn").data("anime", info);
+        $("#delete-btn").data("anime", info);
     });
+}
 
-    // add button click
-    $("#add-btn").on("click", function(event) {
+function deleteAnime() {
+    $("#delete-btn").on("click", function(event) {
         event.preventDefault();
         const info = $(this).data("anime");
         const anime = {
@@ -125,9 +105,25 @@ $("document").ready(function() {
             api_number: parseInt(info.id)
         };
 
-        $.post("/user/new", anime).then(function(data) {
-            console.log(data);
+        $.ajax({
+            method: "DELETE",
+            url: "user/watchList/" + anime.api_number
+        }).then(function(data) {
+            console.log("deleting anime number ", data);
         });
-        alert("Anime added to your watch list");
+        window.location.reload();
     });
+}
+
+// get users saved animes
+$.ajax("/user/watchList").then(function(response) {
+    const animes = response.map(anime => anime.name);
+    getAnime(...animes);
+});
+
+$("document").ready(function() {
+    // when modal is clicked
+    modalClick();
+    // delete button click
+    deleteAnime();
 });
