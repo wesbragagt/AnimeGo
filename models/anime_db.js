@@ -1,8 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-    var Anime = sequelize.define("Anime", {
-        name: DataTypes.STRING,
-        genre: DataTypes.STRING,
-        api_id: DataTypes.INTEGER
+    const Anime = sequelize.define("Anime", {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        api_number: {
+            type: DataTypes.INTEGER
+        }
     });
     return Anime;
 };

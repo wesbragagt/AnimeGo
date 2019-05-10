@@ -5,24 +5,14 @@ var path = require("path");
 module.exports = function(app) {
     // Load index page
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
-
-        // db.Anime.findAll({}).then(function(dbExamples) {
-        //     res.render("index", {
-        //         msg: "AnimeGo!",
-        //         animes: dbExamples
-        //     });
+        res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
+    });
+    app.get("/watchList", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
     });
 
-    // Load example page and pass in an example by id
-    app.get("/example/:id", function(req, res) {
-        // db.Anime.findOne({ where: { id: req.params.id } }).then(function(
-        //     dbExample
-        // ) {
-        //     res.render("example", {
-        //         example: dbExample
-        //     });
-        // });
+    app.get("/recommended", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/html/recommended.html"));
     });
 
     // Render 404 page for any unmatched routes
