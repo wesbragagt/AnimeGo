@@ -10,6 +10,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
     <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+    <meta name="google-signin-client_id" content="1086645402545-qqd7g2pgjlpi75jmnl74ftvf81hfdsjp.apps.googleusercontent.com"
 </head>
 
 <body id="landing">
@@ -20,8 +21,8 @@
                 <p class="lead">Anime reccomendations for you, personalized to your taste.</p>
                 <hr class="my-4">
                 <p>Find the anime to spark your interest. Watch, rinse, repeat.</p>
-                <input type="image" src="../assets/google_signin_buttons/web/1x/btn_google_signin_light_focus_web.png"
-                    name="saveForm" class="btTxt submit" id="saveForm" />
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <script src="https://apis.google.com/js/platform.js" async defer></script>
             </div>
         </div>
     </div>
