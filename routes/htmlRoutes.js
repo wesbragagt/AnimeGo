@@ -7,13 +7,9 @@ module.exports = function(app) {
     app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/html/landing.html"));
     });
-
+    
     app.get("/watchList", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
-    });
-
-    app.get("/index", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/html/index.html"));
     });
 
     app.get("/recommended", function(req, res) {
