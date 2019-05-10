@@ -69,7 +69,13 @@ function getAnime(...arr) {
     }
 }
 
-getAnime("Berserk", "Hunter vs Hunter", "One Punch Man");
+getAnime(
+    "Dragon Ball Super",
+    "Hunter vs Hunter",
+    "Fairy Tail",
+    "Attack on Titan",
+    "Fullmetal Alchemist"
+);
 
 $("document").ready(function() {
     // modal clicks
@@ -119,9 +125,22 @@ $("document").ready(function() {
             api_number: parseInt(info.id)
         };
 
-        $.post("/user/new", anime).then(function(data) {
-            console.log(data);
+        // get a list of all the ids currently inside our list
+        $.get("/user/watchList").then(function(response) {
+            const currentList = response.map(anime => anime.api_number);
+
+            // It only adds that anime if it doesn't already exists
+            if (currentList.indexOf(anime.api_number) === -1) {
+                $.post("/user/watchList", anime).then(function(data) {
+                    console.log("data posted: ", data);
+                    alert("anime added to list ");
+                    window.location.href = "/watchList";
+                    return;
+                });
+            } else {
+                alert("you've already added this anime to the list");
+                return;
+            }
         });
-        alert("Anime added to your watch list");
     });
 });

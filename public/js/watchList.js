@@ -70,12 +70,10 @@ function getAnime(...arr) {
 }
 
 // get users saved animes
-$.ajax("/user").then(function(response) {
+$.ajax("/user/watchList").then(function(response) {
     const animes = response.map(anime => anime.name);
     getAnime(...animes);
 });
-
-getAnime("bleach", "totoro", "one piece", "death note", "attack on titan");
 
 $("document").ready(function() {
     // modal clicks
@@ -113,11 +111,11 @@ $("document").ready(function() {
         );
 
         // assign data to the button
-        $("#add-btn").data("anime", info);
+        $("#delete-btn").data("anime", info);
     });
 
     // add button click
-    $("#add-btn").on("click", function(event) {
+    $("#delete-btn").on("click", function(event) {
         event.preventDefault();
         const info = $(this).data("anime");
         const anime = {
@@ -125,9 +123,12 @@ $("document").ready(function() {
             api_number: parseInt(info.id)
         };
 
-        $.post("/user/new", anime).then(function(data) {
-            console.log(data);
+        $.ajax({
+            method: "DELETE",
+            url: "user/watchList/" + anime.api_number
+        }).then(function(data) {
+            console.log("deleting anime number ", data);
         });
-        alert("Anime added to your watch list");
+        window.location.reload();
     });
 });

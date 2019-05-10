@@ -16,14 +16,24 @@ module.exports = function(app) {
     });
 
     // get all the anime that has been added
-    app.get("/user", function(req, res) {
+    app.get("/user/watchList", function(req, res) {
         db.Anime.findAll({}).then(function(result) {
             res.json(result);
         });
     });
 
-    app.post("/user/new", function(req, res) {
+    app.post("/user/watchList", function(req, res) {
         db.Anime.create(req.body).then(function(dbAnime) {
+            res.json(dbAnime);
+        });
+    });
+
+    app.delete("/user/watchList/:api_number", function(req, res) {
+        db.Anime.destroy({
+            where: {
+                api_number: req.params.api_number
+            }
+        }).then(function(dbAnime) {
             res.json(dbAnime);
         });
     });
