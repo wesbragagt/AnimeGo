@@ -7,9 +7,11 @@ function getAnime(...arr) {
                 id: response.data[0].id,
                 title: response.data[0].attributes.titles.en,
                 ageRating: response.data[0].attributes.ageRating,
+                released: response.data[0].attributes.startDate,
                 poster: response.data[0].attributes.posterImage.original,
                 synopsis: response.data[0].attributes.synopsis,
                 status: response.data[0].attributes.status,
+                episodeCount: response.data[0].attributes.episodeCount,
                 length: response.data[0].attributes.episodeLength,
                 preview: response.data[0].attributes.youtubeVideoId,
                 apiLink: response.data[0].links
@@ -100,6 +102,9 @@ function modalClick() {
             "https://www.youtube.com/embed/" + info.preview
         );
 
+        $("#released").text(info.released);
+        $("#episodes").text(info.episodeCount);
+
         // assign data to the button
         $("#add-btn").data("anime", info);
     });
@@ -143,7 +148,11 @@ getAnime(
     "Fullmetal Alchemist",
     "High School of Dead",
     "My Hero Academia",
-    "Gantz"
+    "Cowboy Bebop",
+    "Angel Beats!",
+    "Death Note",
+    "Blood",
+    "RWBY"
 );
 
 $("document").ready(function() {

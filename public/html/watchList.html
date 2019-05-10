@@ -94,31 +94,44 @@
                     </div>
 
                     <!-- MODAL BODY -->
-                    <div class="modal-body container">
-                        <div class="row">
+                    <div
+                        class="modal-body container d-flex flex-column align-items-start p-2"
+                    >
+                        <div
+                            class="col-md-12 embed-responsive embed-responsive-16by9 mb-2"
+                        >
+                            <iframe
+                                class="embed-responsive-item modal-preview"
+                                src=""
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        <div class="row d-flex justify-content-start flex-wrap">
                             <div
-                                class="col-md-12 d-flex justify-content-baseline"
+                                class="col-md-3 pr-0 d-flex flex-column align-items-start"
                             >
                                 <img
-                                    class="rounded  p-2 mr-auto modal-image img-fluid"
+                                    class="rounded modal-image img-fluid pb-0"
                                     src=""
                                     alt=""
                                     style="height: 300px;"
                                 />
-                                <p class="modal-synopsis  text-dark"></p>
+                                <div class="text-left">
+                                    <span
+                                        >Released:
+                                        <p id="released"></p
+                                    ></span>
+                                    <span
+                                        >Episodes:
+                                        <p id="episodes"></p
+                                    ></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="col-md-5 embed-responsive embed-responsive-16by9  m-auto"
-                            >
-                                <iframe
-                                    class="embed-responsive-item modal-preview"
-                                    src=""
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
+
+                            <div class="col-md-8 d-inline-block">
+                                <p class="modal-synopsis  text-dark"></p>
                             </div>
                         </div>
                     </div>
