@@ -21,9 +21,12 @@ app.engine(
     })
 );
 app.set("view engine", "handlebars");
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("dotenv").config();
+
 
 var syncOptions = { force: true };
 
