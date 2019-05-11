@@ -37,27 +37,21 @@
             </a>
         </nav>
 
-        <header class="hero jumbotron mb-0">
-            <div class="text-white text-center">
-                <div>
-                    <h2
-                        class="card-title h1-responsive pt-3 mb-5 font-bold display-3"
-                    >
-                        <strong
-                            >Find, and add animes to your go to watch
-                            list</strong
-                        >
-                    </h2>
-                    <p class="mx-5">
-                        We've selected an array of anime shows for you to pick
-                        and add to your watch list, it's that simple, just click
-                        on one of the cards and you can decide if you like to
-                        save it to your list.
-                    </p>
+        <header class="hero">
+            <div id="banner" class="section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="jumbotron">
+                            <h1 class="small">
+                                Welcome To <span class="bold">AnimeGo!</span>
+                            </h1>
+                            <p class="big">Find what you want to watch.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
-        <div class="myFav mb-2">
+        <div class="myFav mb-4">
             <h2 class="text-center m-auto">Recommended</h2>
         </div>
 
@@ -100,44 +94,31 @@
                     </div>
 
                     <!-- MODAL BODY -->
-                    <div
-                        class="modal-body container d-flex flex-column align-items-start p-2"
-                    >
-                        <div
-                            class="col-md-12 embed-responsive embed-responsive-16by9 mb-2"
-                        >
-                            <iframe
-                                class="embed-responsive-item modal-preview"
-                                src=""
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="row d-flex justify-content-start flex-wrap">
+                    <div class="modal-body container">
+                        <div class="row">
                             <div
-                                class="col-md-3 pr-0 d-flex flex-column align-items-start"
+                                class="col-md-12 d-flex justify-content-baseline"
                             >
                                 <img
-                                    class="rounded modal-image img-fluid pb-0"
+                                    class="rounded  p-2 mr-auto modal-image img-fluid"
                                     src=""
                                     alt=""
                                     style="height: 300px;"
                                 />
-                                <div class="text-left">
-                                    <span
-                                        >Released:
-                                        <p id="released"></p
-                                    ></span>
-                                    <span
-                                        >Episodes:
-                                        <p id="episodes"></p
-                                    ></span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-8 d-inline-block">
                                 <p class="modal-synopsis  text-dark"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div
+                                class="col-md-5 embed-responsive embed-responsive-16by9  m-auto"
+                            >
+                                <iframe
+                                    class="embed-responsive-item modal-preview"
+                                    src=""
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                ></iframe>
                             </div>
                         </div>
                     </div>
