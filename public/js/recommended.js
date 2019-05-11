@@ -127,8 +127,8 @@ function addAnime() {
             if (currentList.indexOf(anime.api_number) === -1) {
                 $.post("/user/watchList", anime).then(function(data) {
                     console.log("data posted: ", data);
-                    alert("anime added to list ");
-                    window.location.href = "/watchList";
+
+                    // window.location.href = "/watchList";
                     return;
                 });
             } else {

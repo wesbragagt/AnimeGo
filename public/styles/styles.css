@@ -2,19 +2,15 @@ body {
     background: url("../assets/hip-square/hip-square.png");
 }
 
-.jumbotron {
-    background-color: transparent;
-    padding-top: 90px;
-}
-
 .hero {
     background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
         url("../assets/banner.jpg");
     background-size: cover;
     background-position: center;
     width: 100wh;
-    height: 60vh;
+    height: 45vh;
     display: flex;
+    justify-content: flex-center;
 }
 
 .myFav {
@@ -37,8 +33,4 @@ body {
             content-box center fixed;
     height: 100%;
     background-size: cover;
-}
-
-.jumbotron {
-    margin-top: 1in;
 }
