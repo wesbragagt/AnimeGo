@@ -4,6 +4,7 @@ var exphbs = require("express-handlebars");
 var passport = require("passport");
 var GoogleStrategy = require("passport-google-oauth20");
 var cookieSession = require("cookie-session");
+var path = require("path");
 
 var db = require("./models");
 
@@ -58,83 +59,81 @@ db.sequelize.sync(syncOptions).then(function() {
     });
 });
 
-// app.listen(PORT, function() {
-//     console.log(`Listening on port ${PORT}`);
-// });
-// cookieSession config
+// cookieSession configuration for one day of life
 app.use(
     cookieSession({
-        maxAge: 24 * 60 * 60 * 1000, // One day in milliseconds
+        maxAge: 24 * 60 * 60 * 1000,
         keys: ["randomstringhere"]
     })
 );
 
-app.use(passport.initialize()); // Used to initialize passport
-app.use(passport.session()); // Used to persist login sessions
+// Initalize and persist login session
+app.use(passport.initialize()); 
+app.use(passport.session()); 
 
 // Strategy config
+console.log("here is the id", process.env.clientID)
+console.log("here is the sec", process.env.clientSecret)
+console.log("here is the call", process.env.callbackURL)
 passport.use(
     new GoogleStrategy(
         {
             clientID: "process.env.clientID",
             clientSecret: "process.env.clientSecret",
-            callbackURL: "process.env.callbackURL"
+            callbackURL: "http://localhost:3000/recommended"
         },
         (accessToken, refreshToken, profile, done) => {
-            done(null, profile); // passes the profile data to serializeUser
+            done(null, profile); 
         }
     )
 );
 
-// Used to stuff a piece of information into a cookie
-passport.serializeUser((user, done) => {
+
+passport.serializeUser(function(user, done) {
     done(null, user);
-});
+  });
+  
+  passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+  });
+  
 
-// Used to decode the received cookie and persist session
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
+// // Middleware to check if the user is authenticated
+// function isUserAuthenticated(req, res, next) {
+//     if (req.user) {
+//         console.log("logged in")
+//         next();
+//     } else {
+//         res.send("You must login!");
+//     }
+// }
 
-// Middleware to check if the user is authenticated
-function isUserAuthenticated(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.send("You must login!");
-    }
-}
+// // passport.authenticate middleware is used here to authenticate the request
+// app.get(
+//     "/auth/google",
+//     passport.authenticate("google", {
+//         scope: ["profile"] // Used to specify the required data
+//     })
+// );
 
-// passport.authenticate middleware is used here to authenticate the request
-app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-        scope: ["profile"] // Used to specify the required data
-    })
-);
+// // The middleware receives the data from Google and runs the function on Strategy config
+// app.get(
+//     "/auth/google/callback",
+//     passport.authenticate("google"),
+//     (req, res) => {
+//         res.redirect("/secret");
+//     }
+// );
 
-// The middleware receives the data from Google and runs the function on Strategy config
-app.get(
-    "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-        res.redirect("/secret");
-    }
-);
+// // Secret route
+// app.get("/secret", isUserAuthenticated, (req, res) => {
+//     res.send("You have reached the secret route");
+// });
 
-// Secret route
-app.get("/secret", isUserAuthenticated, (req, res) => {
-    res.send("You have reached the secret route");
-});
-
-// Logout route
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
-
-app.listen(8000, () => {
-    console.log("Server Started!");
-});
+// // Logout route
+// app.get("/logout", (req, res) => {
+//     req.logout();
+//     res.redirect("/");
+// });
 
 module.exports = app;
