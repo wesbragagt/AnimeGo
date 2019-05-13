@@ -1,27 +1,59 @@
-var axios = require("axios");
-var express = require("express");
-var exphbs = require("express-handlebars");
+const axios = require("axios");
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const flash = require("connect-flash");
+const session = require("express-session");
 
-var db = require("./models");
+const passport = require("passport");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const db = require("./models");
 
-// Middleware
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// EJS
+app.use(expressLayouts);
+app.set("view engine", "ejs");
+
+// body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// Handlebars
-app.engine(
-    "handlebars",
-    exphbs({
-        defaultLayout: "main"
+// express-session middleware
+app.use(
+    session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true
     })
 );
-app.set("view engine", "handlebars");
+
+//passport config
+require("./config/passport")(passport);
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// connect flash
+app.use(flash());
+
+// global vars
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 // Routes
+
+// USER
+app.use("/", require("./routes/index"));
+app.use("/users", require("./routes/user"));
+
+// Utility routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("dotenv").config();
@@ -35,24 +67,14 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
+db.User.sync(syncOptions);
 
-db.sequelize.sync(syncOptions).then(function() {
-    db.Anime.create({
-        name: "naruto",
-        api_number: 11
-    }).then(function() {
-        db.Anime.create({
-            name: "sailor moon",
-            api_number: 489
-        });
-    });
-    app.listen(PORT, function() {
-        console.log(
-            "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-            PORT,
-            PORT
-        );
-    });
+app.listen(PORT, function() {
+    console.log(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+    );
 });
 
 module.exports = app;
