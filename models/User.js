@@ -1,17 +1,33 @@
 module.exports = function(sequelize, DataTypes) {
-    const User = sequelize.define("User", {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
+    const User = sequelize.define(
+        "User",
+        {
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
         },
-        email: DataTypes.STRING,
-        password: DataTypes.STRING
-    });
+        {
+            classMethods: {
+                associate: function(models) {
+                    User.belongsToMany(models.Anime, {
+                        through: {
+                            model: models.UserAnime
+                        },
+                        foreignKey: "user_id"
+                    });
+                }
+            }
+        }
+    );
 
-    User.associate = function(models) {
-        User.hasMany(models.Anime, {
-            onDelete: "cascade"
-        });
-    };
     return User;
 };

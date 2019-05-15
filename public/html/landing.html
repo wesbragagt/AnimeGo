@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>AnimeGo!</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AnimeGo!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+        <meta
+            name="google-signin-client_id"
+            content="1086645402545-qqd7g2pgjlpi75jmnl74ftvf81hfdsjp.apps.googleusercontent.com"
+        />
+    </head>
 
-    <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
-    <meta name="google-signin-client_id" content="1086645402545-qqd7g2pgjlpi75jmnl74ftvf81hfdsjp.apps.googleusercontent.com"
-</head>
+    <body id="landing">
+        <div class="container">
+            <div class="row d-flex flex-column align-items-center">
+                <div class="jumbotron">
+                    <h1 class="display-4">Welcome to AnimeGo!</h1>
+                    <p class="lead">
+                        Anime reccomendations for you, personalized to your
+                        taste.
+                    </p>
+                    <hr class="my-4" />
+                    <p>
+                        Find the anime to spark your interest. Watch, rinse,
+                        repeat.
+                    </p>
 
-<body id="landing">
-    <div class="container">
-        <div class="row">
-            <div class="jumbotron">
-                <h1 class="display-4">Welcome to AnimeGo!</h1>
-                <p class="lead">Anime reccomendations for you, personalized to your taste.</p>
-                <hr class="my-4">
-                <p>Find the anime to spark your interest. Watch, rinse, repeat.</p>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                    <p>Create an account or login</p>
+                    <a
+                        href="/users/register"
+                        class="btn btn-primary btn-block mb-2"
+                        >Register</a
+                    >
+                    <a href="/users/login" class="btn btn-secondary btn-block"
+                        >Login</a
+                    >
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-
-</body>
-
+    </body>
 </html>

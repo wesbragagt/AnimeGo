@@ -9,10 +9,6 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/html/watchList.html"));
     });
 
-    app.get("/recommended", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/html/recommended.html"));
-    });
-
     // Render 404 page for any unmatched routes
     app.get("*", function(req, res) {
         res.render("404");

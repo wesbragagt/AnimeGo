@@ -139,6 +139,10 @@ function addAnime() {
     });
 }
 
+$.get("/dashboard", function(req, res) {
+    console.log(req.user);
+});
+
 // calling out animes for recommendations
 getAnime(
     "Dragon Ball Super",
