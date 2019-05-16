@@ -10,7 +10,9 @@ router.get("/", (req, res) => {
 // DASHBOARD
 router.get("/dashboard", (req, res) => {
     
-    res.render("dashboard");
-    // res.sendFile(path.join(__dirname, "../public/html/recommended.html"));
+    res.render("dashboard", {
+        name: req.user.name
+    });
+    
 });
 module.exports = router;
