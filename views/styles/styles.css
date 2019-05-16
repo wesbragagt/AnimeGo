@@ -1,0 +1,36 @@
+body {
+    background: url("../assets/hip-square/hip-square.png");
+}
+
+.hero {
+    background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+        url("../assets/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100wh;
+    height: 45vh;
+    display: flex;
+    justify-content: flex-center;
+}
+
+.myFav {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #e1e0be;
+    background-color: #dc3545;
+    height: 5%;
+}
+
+/* Landing Page */
+.navbar {
+    background: transparent;
+}
+
+#landing {
+    background: linear-gradient(rgba(20, 20, 20, 0.5), rgba(20, 20, 20, 0.5)),
+        url("https://media.giphy.com/media/NKicvKt6iisXS/giphy.gif") no-repeat
+            content-box center fixed;
+    height: 100%;
+    background-size: cover;
+}

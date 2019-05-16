@@ -14,7 +14,11 @@ module.exports = function(app) {
             })
             .catch("error please provide an anime");
     });
-
+    // get user
+    app.get("/userData", function(req, res) {
+        console.log(req.body);
+        
+    });
     // get all the anime that has been added
     app.get("/user/watchList", function(req, res) {
         db.Anime.findAll({}).then(function(result) {
