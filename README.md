@@ -5,20 +5,21 @@
 
 
 ## Author(s)
-  - [Weslley Bragagt](https://github.com/wesbragagt)
+  - [Weslley Braga](https://github.com/wesbragagt)
   - [Kelsey Gibbs](https://github.com/KelseyGibbs) 
   - [Jack Newgarden](https://github.com/jnewgarden)
 
 ## Description
-  AnimeGo! is a site which allows you to search for anime suggestions. If you sign up you will have the ability to save your favorite animes and recieve suggestions based on what you like.
+  AnimeGo! is a site which allows you to browse through anime recommendations and add animes to your watch list.
+  Under development include a login and sign up system.
 
 ## Technologies Used
 
   ### Front-end  
-  - Bootstrap
+  - Bootstrap MD
   - Handlebars
   - AJAX
-
+  - JQuery
   ### Back-end
   - Nodejs
   - Express
@@ -40,4 +41,4 @@
 
 ---
 ## License & Copyright
-© Weslley Bragagt, Kelsey Gibbs, Jack Newgarden
+© Weslley Braga, Kelsey Gibbs, Jack Newgarden
