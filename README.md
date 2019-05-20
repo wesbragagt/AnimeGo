@@ -17,18 +17,17 @@
 
   ### Front-end  
   - Bootstrap MD
-  - Handlebars
   - AJAX
   - JQuery
+  
   ### Back-end
   - Nodejs
   - Express
   - Sequelize
-  - Passport
-
+  
   ### Database
   - MysQl
-
+  
   ### Testing
   - Chai
   - Mocha
